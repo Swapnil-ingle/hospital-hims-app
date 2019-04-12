@@ -26,7 +26,10 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.3.RELEASE'
-	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.2.Final'
-	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+	compile group: 'org.hibernate', name: 'hibernate-core'
+	compile group: 'mysql', name: 'mysql-connector-java'
+	compile group: 'com.mchange', name: 'c3p0', version: '0.9.5.4'
+	compile group: 'org.springframework', name: 'spring-tx'
+	compile group: 'org.springframework', name: 'spring-orm'
 }

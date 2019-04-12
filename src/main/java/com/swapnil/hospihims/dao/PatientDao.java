@@ -1,17 +1,9 @@
 package com.swapnil.hospihims.dao;
 
 import com.swapnil.hospihims.entity.Patient;
-import com.swapnil.hospihims.factory.HimsSessionFactory;
 
-public class PatientDao {
+public interface PatientDao {
+	public Patient getPatientById(int id);
 	
-	private final HimsSessionFactory sessionFactory = new HimsSessionFactory();
-	
-	public Patient getPatientById(int id) {
-		sessionFactory.getSession().beginTransaction();
-		Patient patient = sessionFactory.getSession().get(Patient.class, id);
-		sessionFactory.getSession().getTransaction().commit();
-		
-		return patient;
-	}
+	public void saveOrUpdate(Patient patient);
 }
