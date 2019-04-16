@@ -22,7 +22,7 @@ public class Patient {
 	private String city;
 	
 	@Column(name="Contact_Number")
-	private int contactNumber;
+	private Integer contactNumber;
 	
 	@Column(name="Email")
 	private String email;
@@ -71,7 +71,7 @@ public class Patient {
 		this.city = city;
 	}
 
-	public int getContactNumber() {
+	public Integer getContactNumber() {
 		return contactNumber;
 	}
 

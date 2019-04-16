@@ -32,4 +32,5 @@ dependencies {
 	compile group: 'com.mchange', name: 'c3p0', version: '0.9.5.4'
 	compile group: 'org.springframework', name: 'spring-tx'
 	compile group: 'org.springframework', name: 'spring-orm'
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
 }
