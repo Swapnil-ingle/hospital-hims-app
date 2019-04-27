@@ -3,6 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
 
 buildscript {
     repositories {
@@ -26,6 +27,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
 	compile group: 'org.hibernate', name: 'hibernate-core'
 	compile group: 'mysql', name: 'mysql-connector-java'
