@@ -5,26 +5,36 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name="patients")
+@ApiModel(description = "All details about the patient.")
 public class Patient {
 	@Id
 	@Column(name="Identifier")
+	@ApiModelProperty("The database generated patient ID")
 	private int identifier;
 	
 	@Column(name="Name")
+	@ApiModelProperty("The patient's name")
 	private String name;
 	
 	@Column(name="Address")
+	@ApiModelProperty(value = "The patient's address", allowEmptyValue = true)
 	private String address;
 	
 	@Column(name="City")
+	@ApiModelProperty(value = "The patient's city", allowEmptyValue = true)
 	private String city;
 	
 	@Column(name="Contact_Number")
+	@ApiModelProperty(value = "The patient's contact number", allowEmptyValue = true)
 	private Integer contactNumber;
 	
 	@Column(name="Email")
+	@ApiModelProperty("The patient's email address")
 	private String email;
 	
 	public Patient() {
