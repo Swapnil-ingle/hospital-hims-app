@@ -21,7 +21,7 @@
           value="com.swapnil.hospihims"/>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
             </props>
         </property>
@@ -29,10 +29,10 @@
  
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
-        <property name="driverClass" value="com.mysql.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/hims" />
-        <property name="user" value="root" />
-        <property name="password" value="root" /> 
+        <property name="driverClass" value="org.h2.Driver" />
+        <property name="jdbcUrl" value="jdbc:h2:mem:hims;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE" />
+        <property name="user" value="sa" />
+        <property name="password" value="sa" /> 
 
 		<property name="initialPoolSize" value="5"/>
         <property name="minPoolSize" value="5" />
