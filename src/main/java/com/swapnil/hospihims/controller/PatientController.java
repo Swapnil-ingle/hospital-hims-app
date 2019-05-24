@@ -36,19 +36,19 @@ public class PatientController {
 	}
 
 	@ApiOperation(value = "Get a patient by Id")
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public Patient getPatient(
-    		@ApiParam(value = "Patient Id from which patient object will be retrieved", required = true)
-    		@PathVariable(value="id") int id) {
-    	try {
-    		return patientSvc.getPatientById(id);
-    	} catch (Exception e) {
-    		System.out.println("Something went wrong: ");
-    		e.printStackTrace();
-    	} 
-    	
-    	return null;
-    }
+	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+	public Patient getPatient(
+		@ApiParam(value = "Patient Id from which patient object will be retrieved", required = true)
+		@PathVariable(value="id") int id) {
+		try {
+			return patientSvc.getPatientById(id);
+		} catch (Exception e) {
+			System.out.println("Something went wrong: ");
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 	
 	@ApiOperation(value = "Add a patient")
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
