@@ -1,5 +1,7 @@
 package com.swapnil.hospihims.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,5 +22,13 @@ public class PatientDaoImpl implements PatientDao {
 	@Override
 	public void saveOrUpdate(Patient patient) {
 		sessionFactory.getCurrentSession().saveOrUpdate(patient);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Patient> getPatients() {
+		return sessionFactory.getCurrentSession()
+				.createQuery("from Patient")
+				.list();
 	}
 }

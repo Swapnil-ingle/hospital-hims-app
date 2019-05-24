@@ -1,5 +1,7 @@
 package com.swapnil.hospihims.service.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.StringUtils;
@@ -33,5 +35,11 @@ public class PatientServiceImpl implements PatientService {
 		}
 
 		patientDao.saveOrUpdate(patient);
+	}
+
+	@Override
+	@Transactional
+	public List<Patient> getPatients() {
+		return patientDao.getPatients();
 	}
 }

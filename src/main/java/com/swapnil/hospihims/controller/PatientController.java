@@ -1,5 +1,7 @@
 package com.swapnil.hospihims.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +23,18 @@ public class PatientController {
 	@Autowired
 	private PatientService patientSvc;
 	
+	@ApiOperation(value = "Get list of patients")
+	@RequestMapping(value = "/get", method = RequestMethod.GET)
+	public List<Patient> getPatients() {
+		try {
+			return patientSvc.getPatients();
+		} catch (Exception e) {
+			System.out.println("Something went wrong: ");
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	@ApiOperation(value = "Get a patient by Id")
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     public Patient getPatient(
