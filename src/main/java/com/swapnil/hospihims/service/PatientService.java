@@ -10,4 +10,6 @@ public interface PatientService {
 	public void savePatient(Patient patient);
 
 	public List<Patient> getPatients();
+
+	public void updatePatient(int id, Patient patient);
 }

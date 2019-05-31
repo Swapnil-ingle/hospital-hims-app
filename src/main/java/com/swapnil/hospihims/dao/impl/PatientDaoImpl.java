@@ -24,6 +24,11 @@ public class PatientDaoImpl implements PatientDao {
 		sessionFactory.getCurrentSession().saveOrUpdate(patient);
 	}
 
+	@Override
+	public void update(Patient patient) {
+		sessionFactory.getCurrentSession().update(patient);
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Patient> getPatients() {

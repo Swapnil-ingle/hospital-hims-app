@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.swapnil.hospihims.dao.PatientDao;
 import com.swapnil.hospihims.entity.Patient;
 import com.swapnil.hospihims.service.PatientService;
 
@@ -63,6 +64,27 @@ public class PatientController {
 			e.printStackTrace();
 		}
 		
+		return null;
+	}
+
+	@ApiOperation(value = "Update a patient by Id")
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+	public Patient updatePatient(
+		@ApiParam(value = "Patient id ", required = true) @PathVariable(value="id") int id,
+		@ApiParam(value = "Patient object", required = true) @RequestBody Patient patient) {
+		try {
+			Patient dbPatient = patientSvc.getPatientById(id);
+			if (dbPatient == null) {
+				throw new IllegalArgumentException("Patient with id " + id + " does not exists.");
+			}
+
+			patientSvc.updatePatient(id, patient);
+			return patient;
+		} catch (Exception e) {
+			System.out.println("Something went wrong: ");
+			e.printStackTrace();
+		}
+
 		return null;
 	}
 }

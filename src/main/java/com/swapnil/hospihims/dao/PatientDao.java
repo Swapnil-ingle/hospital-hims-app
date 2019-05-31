@@ -10,4 +10,6 @@ public interface PatientDao {
 	public void saveOrUpdate(Patient patient);
 
 	public List<Patient> getPatients();
+
+	public void update(Patient patient);
 }
