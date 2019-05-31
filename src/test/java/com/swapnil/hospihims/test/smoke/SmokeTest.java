@@ -1,4 +1,4 @@
-package com.swapnil.hospihims.test.controller;
+package com.swapnil.hospihims.test.smoke;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
