@@ -2,6 +2,7 @@ package com.swapnil.hospihims.test.controller;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -25,9 +26,25 @@ public class PatientController {
 	
 	@Test
 	public void shouldReturnListOfPatients() throws Exception {
-		this.mockMvc.perform(get("/patient/get"))
+		this.mockMvc.perform(get("/patient/"))
 			.andDo(print())
 			.andExpect(status().isOk())
 			.andExpect(content().string(containsString("Chandler")));
 	}
+
+	@Test
+	public void shouldReturnPatientById() throws Exception {
+		this.mockMvc.perform(get("/patient/1"))
+			.andDo(print())
+			.andExpect(status().isOk())
+			.andExpect(content().string(containsString("Sam")));
+	}
+
+//	@Test
+//	public void shouldAddPatient() throws Exception {
+//		this.mockMvc.perform(post("/patient/"))
+//			.andDo(print())
+//			.andExpect(status().isOk())
+//			.andExpect(content().string(containsString("Sam")));
+//	}
 }
