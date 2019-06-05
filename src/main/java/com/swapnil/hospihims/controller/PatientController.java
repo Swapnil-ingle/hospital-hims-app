@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.swapnil.hospihims.dao.PatientDao;
 import com.swapnil.hospihims.entity.Patient;
 import com.swapnil.hospihims.service.PatientService;
 
@@ -25,7 +24,7 @@ public class PatientController {
 	private PatientService patientSvc;
 	
 	@ApiOperation(value = "Get list of patients")
-	@RequestMapping(value = "/get", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public List<Patient> getPatients() {
 		try {
 			return patientSvc.getPatients();
@@ -37,7 +36,7 @@ public class PatientController {
 	}
 
 	@ApiOperation(value = "Get a patient by Id")
-	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public Patient getPatient(
 		@ApiParam(value = "Patient Id from which patient object will be retrieved", required = true)
 		@PathVariable(value="id") int id) {
@@ -52,7 +51,7 @@ public class PatientController {
 	}
 	
 	@ApiOperation(value = "Add a patient")
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public Patient addPatient(
 			@ApiParam(value = "Patient object to be stored in the database", required = true)
 			@RequestBody Patient patient) {
@@ -68,7 +67,7 @@ public class PatientController {
 	}
 
 	@ApiOperation(value = "Update a patient by Id")
-	@RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public Patient updatePatient(
 		@ApiParam(value = "Patient id ", required = true) @PathVariable(value="id") int id,
 		@ApiParam(value = "Patient object", required = true) @RequestBody Patient patient) {
