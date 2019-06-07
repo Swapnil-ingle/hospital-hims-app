@@ -11,11 +11,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.swapnil.hospihims.app.Application;
+import com.swapnil.hospihims.entity.Patient;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest()
@@ -40,11 +44,32 @@ public class PatientController {
 			.andExpect(content().string(containsString("Sam")));
 	}
 
-//	@Test
-//	public void shouldAddPatient() throws Exception {
-//		this.mockMvc.perform(post("/patient/"))
-//			.andDo(print())
-//			.andExpect(status().isOk())
-//			.andExpect(content().string(containsString("Sam")));
-//	}
+	@Test
+	public void shouldAddPatient() throws Exception {
+		Patient patient = getPatient();
+
+		this.mockMvc.perform(post("/patient/")
+	            .contentType(MediaType.APPLICATION_JSON)
+	            .content(toJson(patient)))
+				.andDo(print())
+	            .andExpect(status().isOk())
+	            .andExpect(content().string(containsString("TestPatient")));
+	}
+
+	private Patient getPatient() {
+		Patient patient = new Patient();
+		patient.setName("TestPatient");
+		patient.setIdentifier(1);
+		patient.setEmail("TestPatient@tp.com");
+		patient.setAddress("TestPatientAdd");
+		patient.setCity("TPCity");
+		patient.setContactNumber(123456789);
+
+		return patient;
+	}
+
+	private byte[] toJson(Patient patient) throws JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.writeValueAsBytes(patient);
+	}
 }
