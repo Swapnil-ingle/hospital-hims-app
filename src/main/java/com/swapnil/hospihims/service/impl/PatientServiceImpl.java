@@ -49,4 +49,10 @@ public class PatientServiceImpl implements PatientService {
 		patient.setIdentifier(id);
 		patientDao.saveOrUpdate(patient);
 	}
+
+	@Override
+	@Transactional
+	public void deletePatient(int id) {
+		patientDao.deletePatient(id);
+	}
 }

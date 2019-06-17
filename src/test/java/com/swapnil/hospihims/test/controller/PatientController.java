@@ -1,6 +1,7 @@
 package com.swapnil.hospihims.test.controller;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -55,11 +56,17 @@ public class PatientController {
 	            .andExpect(status().isOk())
 	            .andExpect(content().string(containsString("TestPatient")));
 	}
+	
+	@Test
+	public void shouldDeletePatient() throws Exception {
+		this.mockMvc.perform(delete("/patient/1"))
+		.andDo(print())
+		.andExpect(status().isOk());
+	}
 
 	private Patient getPatient() {
 		Patient patient = new Patient();
 		patient.setName("TestPatient");
-		patient.setIdentifier(1);
 		patient.setEmail("TestPatient@tp.com");
 		patient.setAddress("TestPatientAdd");
 		patient.setCity("TPCity");

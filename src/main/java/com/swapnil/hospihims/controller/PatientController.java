@@ -86,4 +86,22 @@ public class PatientController {
 
 		return null;
 	}
+	
+	@ApiOperation(value = "Delete a patient by Id")
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void deletePatient(
+			@ApiParam(value = "Patient id ", required = true) 
+			@PathVariable(value="id") int id) {
+		try {
+			Patient dbPatient = patientSvc.getPatientById(id);
+			if (dbPatient == null) {
+				throw new IllegalArgumentException("Patient with id " + id + " does not exists.");
+			}
+			
+			patientSvc.deletePatient(id);
+		} catch (Exception e) {
+			System.out.println("Something went wrong: ");
+			e.printStackTrace();
+		}
+	}
 }

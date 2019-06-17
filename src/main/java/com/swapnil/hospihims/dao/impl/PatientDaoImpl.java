@@ -36,4 +36,10 @@ public class PatientDaoImpl implements PatientDao {
 				.createQuery("from Patient")
 				.list();
 	}
+
+	@Override
+	public void deletePatient(int id) {
+		Patient patient = sessionFactory.getCurrentSession().load(Patient.class, id);
+		sessionFactory.getCurrentSession().delete(patient);
+	}
 }
