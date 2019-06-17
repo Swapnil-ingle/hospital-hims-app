@@ -12,4 +12,6 @@ public interface PatientDao {
 	public List<Patient> getPatients();
 
 	public void update(Patient patient);
+
+	public void deletePatient(int id);
 }
