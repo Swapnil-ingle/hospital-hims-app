@@ -42,4 +42,12 @@ public class PatientDaoImpl implements PatientDao {
 		Patient patient = sessionFactory.getCurrentSession().load(Patient.class, id);
 		sessionFactory.getCurrentSession().delete(patient);
 	}
+
+	@Override
+	public Patient getPatientByPid(String pid) {
+		return (Patient) sessionFactory.getCurrentSession()
+				.createQuery("from Patient where patient_id = :patient_id")
+				.setParameter("patient_id", pid)
+				.uniqueResult();
+	}
 }

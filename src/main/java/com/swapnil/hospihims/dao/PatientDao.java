@@ -14,4 +14,6 @@ public interface PatientDao {
 	public void update(Patient patient);
 
 	public void deletePatient(int id);
+
+	public Patient getPatientByPid(String patient_Id);
 }

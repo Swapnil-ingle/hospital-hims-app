@@ -26,12 +26,21 @@ public class PatientServiceImpl implements PatientService {
 	@Override
 	@Transactional
 	public void savePatient(Patient patient) {
+		if (StringUtils.isEmpty(patient.getPid())) {
+			throw new IllegalArgumentException("Patient ID is required!");
+		}
+
 		if (StringUtils.isEmpty(patient.getName())) {
 			throw new IllegalArgumentException("Patient name is required!");
 		}
 
 		if (StringUtils.isEmpty(patient.getEmail())) {
 			throw new IllegalArgumentException("Patient e-mail is required!");
+		}
+
+		Patient dbPatient = patientDao.getPatientByPid(patient.getPid());
+		if (dbPatient != null) {
+			throw new IllegalArgumentException("Patient with the same pid already exists!");
 		}
 
 		patientDao.saveOrUpdate(patient);
@@ -46,6 +55,12 @@ public class PatientServiceImpl implements PatientService {
 	@Override
 	@Transactional
 	public void updatePatient(int id, Patient patient) {
+		Patient dbPatient = patientDao.getPatientById(id);
+
+		if (dbPatient == null) {
+			throw new IllegalArgumentException("Patient with id " + id + " does not exists.");
+		}
+
 		patient.setIdentifier(id);
 		patientDao.saveOrUpdate(patient);
 	}

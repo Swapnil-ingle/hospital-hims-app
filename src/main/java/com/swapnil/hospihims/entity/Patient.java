@@ -17,6 +17,10 @@ public class Patient {
 	@ApiModelProperty("The database generated patient ID")
 	private int identifier;
 	
+	@Column(name="Patient_Id")
+	@ApiModelProperty("Unique patient ID")
+	private String pid;
+	
 	@Column(name="Name")
 	@ApiModelProperty("The patient's name")
 	private String name;
@@ -96,11 +100,18 @@ public class Patient {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getPid() {
+		return pid;
+	}
+
+	public void setPid(String pid) {
+		this.pid = pid;
+	}
 
 	@Override
 	public String toString() {
-		return "Patient [identifier=" + identifier + ", name=" + name + ", address=" + address + ", city=" + city
-				+ ", contactNumber=" + contactNumber + ", email=" + email + "]";
+		return "Patient [identifier=" + identifier + ", patient_Id=" + pid + ", name=" + name + ", address="
+				+ address + ", city=" + city + ", contactNumber=" + contactNumber + ", email=" + email + "]";
 	}
-	
 }

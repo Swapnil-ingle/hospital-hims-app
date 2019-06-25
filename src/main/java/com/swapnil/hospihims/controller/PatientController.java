@@ -72,11 +72,6 @@ public class PatientController {
 		@ApiParam(value = "Patient id ", required = true) @PathVariable(value="id") int id,
 		@ApiParam(value = "Patient object", required = true) @RequestBody Patient patient) {
 		try {
-			Patient dbPatient = patientSvc.getPatientById(id);
-			if (dbPatient == null) {
-				throw new IllegalArgumentException("Patient with id " + id + " does not exists.");
-			}
-
 			patientSvc.updatePatient(id, patient);
 			return patient;
 		} catch (Exception e) {
