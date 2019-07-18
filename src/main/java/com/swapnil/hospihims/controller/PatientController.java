@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/patient")
-@Api(value = "Hospital management system", description = "Operations pertaining to a patient in Hospital management system")
+@Api(value = "Patient REST API", description = "Operations pertaining to a patient in Hospital management system")
 public class PatientController {
 	@Autowired
 	private PatientService patientSvc;
