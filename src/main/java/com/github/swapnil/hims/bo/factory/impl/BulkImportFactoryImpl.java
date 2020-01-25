@@ -5,12 +5,19 @@ import org.springframework.stereotype.Component;
 
 import com.github.swapnil.hims.bo.factory.BulkImportFactory;
 import com.github.swapnil.hims.bo.importer.BulkImporter;
+import com.github.swapnil.hims.bo.importer.Importer;
 import com.github.swapnil.hims.bo.importer.impl.PatientImporter;
 
 @Component
 public class BulkImportFactoryImpl implements BulkImportFactory {
 	@Autowired
 	private PatientImporter patientImporter;
+
+	@Override
+	public BulkImporter getPatientImporter(Importer.Type type) {
+		patientImporter.setType(type);
+		return patientImporter;
+	}
 
 	@Override
 	public BulkImporter getPatientImporter() {

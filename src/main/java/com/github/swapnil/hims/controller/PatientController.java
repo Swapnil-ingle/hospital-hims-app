@@ -41,7 +41,7 @@ public class PatientController {
 		@ApiParam(value = "Patient Id from which patient object will be retrieved", required = true)
 		@PathVariable(value="id") Long id) {
 		try {
-			return patientSvc.getPatientById(id);
+			return patientSvc.getById(id);
 		} catch (Exception e) {
 			System.out.println("Something went wrong: ");
 			e.printStackTrace();
@@ -56,7 +56,7 @@ public class PatientController {
 			@ApiParam(value = "Patient object to be stored in the database", required = true)
 			@RequestBody PatientDetail patient) {
 		try {
-			patientSvc.savePatient(patient);
+			patientSvc.save(patient);
 			return patient;
 		} catch (Exception e) {
 			System.out.println("Something went wrong: ");
@@ -72,7 +72,7 @@ public class PatientController {
 		@ApiParam(value = "Patient id ", required = true) @PathVariable(value="id") Long id,
 		@ApiParam(value = "Patient object", required = true) @RequestBody PatientDetail patient) {
 		try {
-			patientSvc.updatePatient(id, patient);
+			patientSvc.update(id, patient);
 			return patient;
 		} catch (Exception e) {
 			System.out.println("Something went wrong: ");
@@ -88,12 +88,12 @@ public class PatientController {
 			@ApiParam(value = "Patient id ", required = true) 
 			@PathVariable(value="id") Long id) {
 		try {
-			PatientDetail dbPatient = patientSvc.getPatientById(id);
+			PatientDetail dbPatient = patientSvc.getById(id);
 			if (dbPatient == null) {
 				throw new IllegalArgumentException("Patient with id " + id + " does not exists.");
 			}
 			
-			patientSvc.deletePatient(id);
+			patientSvc.delete(id);
 		} catch (Exception e) {
 			System.out.println("Something went wrong: ");
 			e.printStackTrace();

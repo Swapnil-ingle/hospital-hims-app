@@ -13,4 +13,6 @@ public interface BulkImporter {
 	public String[] getHeaders();
 
 	public void saveToDb(Object patient);
+
+	public void setType(Importer.Type type);
 }

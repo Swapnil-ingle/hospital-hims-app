@@ -5,13 +5,15 @@ import java.util.List;
 import com.github.swapnil.hims.dto.PatientDetail;
 
 public interface PatientService {
-	public PatientDetail getPatientById(Long id);
+	public PatientDetail getById(Long id);
 	
-	public void savePatient(PatientDetail patient);
+	public void save(PatientDetail patient);
 
 	public List<PatientDetail> getPatients();
 
-	public void updatePatient(Long id, PatientDetail patient);
+	public void update(Long id, PatientDetail patient);
 
-	public void deletePatient(Long id);
+	public void delete(Long id);
+
+	public void update(PatientDetail patientDetail);
 }

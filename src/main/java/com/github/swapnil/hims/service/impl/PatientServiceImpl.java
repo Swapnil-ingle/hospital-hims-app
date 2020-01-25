@@ -26,7 +26,7 @@ public class PatientServiceImpl implements PatientService {
 
 	@Override
 	@Transactional
-	public PatientDetail getPatientById(Long id) {
+	public PatientDetail getById(Long id) {
 		Patient patient = patientDao.findById(id);
 
 		if (patient == null) {
@@ -39,7 +39,7 @@ public class PatientServiceImpl implements PatientService {
 
 	@Override
 	@Transactional
-	public void savePatient(PatientDetail patientDetail) {
+	public void save(PatientDetail patientDetail) {
 		if (StringUtils.isEmpty(patientDetail.getPatientId())) {
 			throw new PatientException("Patient ID is required!");
 		}
@@ -69,7 +69,7 @@ public class PatientServiceImpl implements PatientService {
 
 	@Override
 	@Transactional
-	public void updatePatient(Long id, PatientDetail patientDetail) {
+	public void update(Long id, PatientDetail patientDetail) {
 		Patient dbPatient = patientDao.findById(id);
 
 		if (dbPatient == null) {
@@ -87,8 +87,13 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
+	public void update(PatientDetail patientDetail) {
+		update(patientDetail.getIdentifier(), patientDetail);
+	}
+
+	@Override
 	@Transactional
-	public void deletePatient(Long id) {
+	public void delete(Long id) {
 		patientDao.deleteById(id);
 	}
 }
